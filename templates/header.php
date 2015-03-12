@@ -22,6 +22,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="questions.php">Questions</a></li>
+                            <li><a href="upload.php">Upload CSV</a></li>
                         </ul>
                     </li>
                     <?php if (isset($_SESSION['username'])): ?>

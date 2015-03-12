@@ -81,6 +81,7 @@ class Question
             $errorArray["question"] = "Question cannot be blank!";
         }
 
+/*
         if (!isset($this->option1) || empty($this->option1)) {
             $errorArray["option1"] = "Option 1 cannot be blank!";
         }
@@ -100,6 +101,7 @@ class Question
         if (!isset($this->explanation) || empty($this->explanation)) {
             $errorArray["explanation"] = "Explanation cannot be blank!";
         }
+  */
         return $errorArray;
     }
 }

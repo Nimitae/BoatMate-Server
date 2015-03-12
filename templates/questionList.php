@@ -1,6 +1,6 @@
 <?php include("templates/header.php"); ?>
 
-
+<div style="padding-top: 10px"></div>
 <div class="container">
     <?php
     $editQuestionState = $this->questionEditModel->getEditQuestionState();
