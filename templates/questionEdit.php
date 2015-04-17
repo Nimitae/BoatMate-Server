@@ -21,6 +21,15 @@
             <input type="hidden" name="action" value="saveEditedQuestion">
             <input type="hidden" name="questionID"
                    value="<?php print $this->questionEditModel->getQuestionBeingEdited()->getQuestionID(); ?>">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-1 control-label" for="question">Topic</label>
+
+                <div class="col-sm-4">
+                    <input id="question" type="text" name="topic"
+                           value="<?php print $this->questionEditModel->getQuestionBeingEdited()->getTopic(); ?>"
+                           class="form-control">
+                </div>
+            </div>
 
             <div class="form-group form-group-sm">
                 <label class="col-sm-1 control-label" for="question">Question</label>

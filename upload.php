@@ -9,7 +9,7 @@ $pdo = new PDO(DBconfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_P
 $model = new UploadQuestionModel($pdo);
 $controller = new UploadQuestionController($model);
 
-$controller->checkAuthorisation();
+//$controller->checkAuthorisation();
 if (isset($_FILES["fileName"])){
     $controller->processFileUpload($_FILES["fileName"]);
 }

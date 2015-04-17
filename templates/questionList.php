@@ -22,6 +22,7 @@
     <h3>Questions List</h3>
     <table class="table table-hover">
         <thead>
+        <th>Topic</th>
         <th>Question</th>
         <th>Option1</th>
         <th>Option2</th>
@@ -35,6 +36,7 @@
         <?php foreach ($this->questionEditModel->getQuestionsContainer() as $question) :
             /** @var Question $question */ ?>
             <tr onclick="window.location='?editQuestion=<?php print $question->getQuestionID(); ?>'">
+                <td><?php print $question->getTopic(); ?></td>
                 <td><?php print $question->getQuestion(); ?></td>
                 <td><?php print $question->getOption1(); ?></td>
                 <td><?php print $question->getOption2(); ?></td>

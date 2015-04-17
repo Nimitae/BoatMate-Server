@@ -1,6 +1,6 @@
 <?php
 
-class Question
+class Question implements JsonSerializable
 {
     private $questionID;
     private $question;
@@ -11,10 +11,12 @@ class Question
     private $explanation;
     private $questionImage;
     private $explanationImage;
+    private $topic;
 
-    public function __construct($question, $option1, $option2, $option3, $option4, $explanation, $questionID = NULL, $questionImage = NULL, $explanationImage = NULL)
+    public function __construct($topic, $question, $option1, $option2, $option3, $option4, $explanation, $questionID = NULL, $questionImage = NULL, $explanationImage = NULL)
     {
         $this->questionID = $questionID;
+        $this->topic = $topic;
         $this->question = $question;
         $this->option1 = $option1;
         $this->option2 = $option2;
@@ -70,6 +72,11 @@ class Question
         return $this->explanationImage;
     }
 
+    public function getTopic()
+    {
+        return $this->topic;
+    }
+
     public function validateQuestionProperties($isNewQuestion = true)
     {
         $errorArray = array();
@@ -79,6 +86,10 @@ class Question
 
         if (!isset($this->question) || empty($this->question)) {
             $errorArray["question"] = "Question cannot be blank!";
+        }
+
+        if (!isset($this->topic) || empty($this->topic)) {
+            $errorArray["topic"] = "Question Topic cannot be blank!";
         }
 
 /*
@@ -103,5 +114,21 @@ class Question
         }
   */
         return $errorArray;
+    }
+
+    public function jsonSerialize()
+    {
+        return array(
+            'topic' => $this->topic,
+        'question'=> $this->question,
+            'option1' => $this->option1,
+            'option2' => $this->option2,
+            'option3' => $this->option3,
+            'option4' => $this->option4,
+            'explanation' => $this->explanation,
+            'questionImage' => $this->questionImage,
+            'explanationImage' => $this->explanationImage
+
+        );
     }
 }

@@ -10,7 +10,7 @@ $model = new QuestionEditModel($pdo);
 $controller = new QuestionEditController($model);
 $view = new QuestionEditView($model);
 
-$controller->checkAuthorisation();
+//$controller->checkAuthorisation();
 
 if (isset($_GET['editQuestion'])) {
     $controller->loadQuestion($_GET['editQuestion']);

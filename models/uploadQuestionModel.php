@@ -45,7 +45,7 @@ class UploadQuestionModel
     private function validateFileUpload($fileData)
     {
         $fileType = explode(".", $fileData['name']);
-        if (strtolower($fileType[1]) != "csv") {
+        if (!isset($fileType[1]) || strtolower($fileType[1]) != "csv") {
             $this->fileUploadErrors[] = "File uploaded is not of csv format!";
         }
         if ($fileData['error'] > 0) {
@@ -57,13 +57,13 @@ class UploadQuestionModel
     {
         $allUploadSuccessful = true;
         for ($i = 0; $i < (sizeof($questionsArray) / 1000); $i++) {
-            $sqlStatement = "INSERT INTO questions (questionID, question, option1, option2, option3, option4, explanation) VALUES ";
+            $sqlStatement = "INSERT INTO questions (questionID, question, option1, option2, option3, option4, explanation, questionImage, explanationImage, topic) VALUES ";
             $sqlParams = array();
             for ($questionIndex = 0; $questionIndex < min(sizeof($questionsArray) - 1000 * $i, 1000); $questionIndex++) {
                 if ($questionIndex != 0){
                     $sqlStatement .= ",";
                 }
-                $sqlStatement .= "(NULL, ?, ?, ?, ?, ?, ?)";
+                $sqlStatement .= "(NULL, ?, ?, ?, ?, ?, ?, NULL, NULL, ?)";
                 /** @var Question $currentQuestion */
                 $currentQuestion = $questionsArray[$questionIndex + $i * 1000];
                 $sqlParams[] = $currentQuestion->getQuestion();
@@ -72,6 +72,7 @@ class UploadQuestionModel
                 $sqlParams[] = $currentQuestion->getOption3();
                 $sqlParams[] = $currentQuestion->getOption4();
                 $sqlParams[] = $currentQuestion->getExplanation();
+                $sqlParams[] = $currentQuestion->getTopic();
             }
             $sqlStatement .= ";";
             $stmt = $this->pdo->prepare($sqlStatement);
@@ -91,7 +92,7 @@ class UploadQuestionModel
     {
         $questionsContainer = array();
         foreach ($questionData as $question) {
-            $newQuestion = new Question($question[1], $question[2], $question[3], $question[4], $question[5], NULL);
+            $newQuestion = new Question($question[0],$question[1], $question[2], $question[3], $question[4], $question[5],$question[6]);
             if (sizeof($newQuestion->validateQuestionProperties(true)) > 0) {
                 $this->uploadQuestionState = UPLOAD_CSV_FAILED;
                 $this->fileUploadErrors[] = "Some questions in CSV file are invalid!";
