@@ -30,6 +30,9 @@
                         <li class="dropdown">
                             <p class="navbar-text">Logged in as <?php print $_SESSION['username']; ?></p>
                         </li>
+                        <li class="dropdown">
+                            <p class="navbar-text"><a href="logout.php">Logout</a></p>
+                        </li>
                     <?php else : ?>
                     <li class="dropdown">
                         <a href="login.php">Login</a>
