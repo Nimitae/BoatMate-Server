@@ -13,3 +13,5 @@ define("QUESTION_DELETED", 5);
 define("QUESTION_DELETE_FAILED", 6);
 define("UPLOAD_CSV_FAILED", 1);
 define("UPLOAD_CSV_SUCCESSFUL", 2);
+define("QUESTION_ADD_FAILED", 1);
+define("QUESTION_ADDED", 2);

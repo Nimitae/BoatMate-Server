@@ -12,7 +12,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">BoatMate</a>
+                <a class="navbar-brand" href="index.php">Boatmate</a>
             </div>
             <div class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
@@ -22,6 +22,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="questions.php">Questions</a></li>
+                            <li><a href="addquestion.php">Add Question</a></li>
                             <li><a href="upload.php">Upload CSV</a></li>
                         </ul>
                     </li>
