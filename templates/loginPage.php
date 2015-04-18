@@ -15,7 +15,7 @@
                 <input type="hidden" name="action" value="loginUser">
                 <input type="text" name="username" class="form-control" placeholder="Username">
                 <br>
-                <input type="text" name="password" class="form-control" placeholder="Password">
+                <input type="password" name="password" class="form-control" placeholder="Password">
                 <br>
                 <input type="submit" class="btn btn-success btn-sm">
             </form>

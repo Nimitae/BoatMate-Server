@@ -63,7 +63,7 @@ class UploadQuestionModel
                 if ($questionIndex != 0){
                     $sqlStatement .= ",";
                 }
-                $sqlStatement .= "(NULL, ?, ?, ?, ?, ?, ?, NULL, NULL, ?)";
+                $sqlStatement .= "(NULL, ?, ?, ?, ?, ?, ?, ?, NULL, ?)";
                 /** @var Question $currentQuestion */
                 $currentQuestion = $questionsArray[$questionIndex + $i * 1000];
                 $sqlParams[] = $currentQuestion->getQuestion();
@@ -72,6 +72,7 @@ class UploadQuestionModel
                 $sqlParams[] = $currentQuestion->getOption3();
                 $sqlParams[] = $currentQuestion->getOption4();
                 $sqlParams[] = $currentQuestion->getExplanation();
+                $sqlParams[] = $currentQuestion->getQuestionImage();
                 $sqlParams[] = $currentQuestion->getTopic();
             }
             $sqlStatement .= ";";
@@ -92,7 +93,7 @@ class UploadQuestionModel
     {
         $questionsContainer = array();
         foreach ($questionData as $question) {
-            $newQuestion = new Question($question[0],$question[1], $question[2], $question[3], $question[4], $question[5],$question[6]);
+            $newQuestion = new Question($question[0],$question[1], $question[2], $question[3], $question[4], $question[5],$question[7], NULL, $question[6]);
             if (sizeof($newQuestion->validateQuestionProperties(true)) > 0) {
                 $this->uploadQuestionState = UPLOAD_CSV_FAILED;
                 $this->fileUploadErrors[] = "Some questions in CSV file are invalid!";

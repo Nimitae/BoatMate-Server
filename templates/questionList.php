@@ -30,21 +30,19 @@
         <th>Option4</th>
         <th>Explanation</th>
         <th>QuestionImage</th>
-        <th>ExplanationImage</th>
         </thead>
         <tbody>
         <?php foreach ($this->questionEditModel->getQuestionsContainer() as $question) :
             /** @var Question $question */ ?>
             <tr onclick="window.location='?editQuestion=<?php print $question->getQuestionID(); ?>'">
-                <td><?php print $question->getTopic(); ?></td>
-                <td><?php print $question->getQuestion(); ?></td>
-                <td><?php print $question->getOption1(); ?></td>
-                <td><?php print $question->getOption2(); ?></td>
-                <td><?php print $question->getOption3(); ?></td>
-                <td><?php print $question->getOption4(); ?></td>
-                <td><?php print $question->getExplanation(); ?></td>
-                <td><?php print $question->getQuestionImage(); ?></td>
-                <td><?php print $question->getExplanationImage(); ?></td>
+                <td><?php print htmlspecialchars($question->getTopic()); ?></td>
+                <td><?php print htmlspecialchars($question->getQuestion()); ?></td>
+                <td><?php print htmlspecialchars($question->getOption1()); ?></td>
+                <td><?php print htmlspecialchars($question->getOption2()); ?></td>
+                <td><?php print htmlspecialchars($question->getOption3()); ?></td>
+                <td><?php print htmlspecialchars($question->getOption4()); ?></td>
+                <td><?php print htmlspecialchars($question->getExplanation()); ?></td>
+                <td><?php print htmlspecialchars($question->getQuestionImage()); ?></td>
             </tr>
         <?php endforeach; ?>
         </tbody>
