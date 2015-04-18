@@ -126,6 +126,19 @@ class QuestionEditModel
         } else {
             $this->editQuestionErrorArray[] = $stmt->errorInfo()[2];
             $this->editQuestionState = QUESTION_SAVE_FAILED;
-        };
+        }
+    }
+
+    public function removeEditedQuestion()
+    {
+        $stmt = $this->pdo->prepare("DELETE FROM questions WHERE questionID = :questionID;");
+        $questionID = $this->questionBeingEdited->getQuestionID();
+        $stmt->bindParam(':questionID', $questionID);
+        if($stmt->execute()){
+            $this->editQuestionState = QUESTION_DELETED;
+        } else {
+            $this->editQuestionErrorArray[] = $stmt->errorInfo()[2];
+            $this->editQuestionState = QUESTION_SAVE_FAILED;
+        }
     }
 }

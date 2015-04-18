@@ -17,6 +17,7 @@ class QuestionEditView
                 include("templates/questionEdit.php");
                 break;
             case QUESTION_SAVED :
+            case QUESTION_DELETED :
             case QUESTION_NOT_FOUND :
             default:
                 include("templates/questionList.php");

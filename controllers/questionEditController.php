@@ -32,6 +32,11 @@ class QuestionEditController
     {
         if ($this->questionEditModel->validateEditedQuestion($_POST)) {
             $this->questionEditModel->saveEditedQuestion();
-        };
+        }
+    }
+
+    public function removeEditedQuestion()
+    {
+        $this->questionEditModel->removeEditedQuestion();
     }
 }

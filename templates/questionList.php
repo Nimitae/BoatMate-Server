@@ -6,13 +6,15 @@
     $editQuestionState = $this->questionEditModel->getEditQuestionState();
     if (isset($editQuestionState)): ?>
         <div
-            class="alert alert-<?php $editQuestionState == QUESTION_SAVED ? print "success" : print "warning"; ?> alert-dismissable">
+            class="alert alert-<?php $editQuestionState == QUESTION_SAVED || $editQuestionState == QUESTION_DELETED ? print "success" : print "warning"; ?> alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <p>
                 <?php if ($editQuestionState == QUESTION_SAVED) :
                     print "Question successfully edited!";
                 elseif ($editQuestionState == QUESTION_NOT_FOUND) :
                     print "Question not found!";
+                elseif ($editQuestionState == QUESTION_DELETED) :
+                    print "Question was deleted successfully!";
                 endif;
                 ?>
             </p>
@@ -22,14 +24,14 @@
     <h3>Questions List</h3>
     <table class="table table-hover">
         <thead>
-        <th>Topic</th>
-        <th>Question</th>
-        <th>Option1</th>
-        <th>Option2</th>
-        <th>Option3</th>
-        <th>Option4</th>
-        <th>Explanation</th>
-        <th>QuestionImage</th>
+        <th style="width: 10%">Topic</th>
+        <th style="width: 20%">Question</th>
+        <th style="width: 10%">Option1</th>
+        <th style="width: 10%">Option2</th>
+        <th style="width: 10%">Option3</th>
+        <th style="width: 10%">Option4</th>
+        <th style="width: 20%">Explanation</th>
+        <th style="width: 10%">QuestionImage</th>
         </thead>
         <tbody>
         <?php foreach ($this->questionEditModel->getQuestionsContainer() as $question) :
@@ -47,6 +49,5 @@
         <?php endforeach; ?>
         </tbody>
     </table>
-
 </div>
 <?php include("templates/footer.php"); ?>

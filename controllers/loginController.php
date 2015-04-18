@@ -11,7 +11,7 @@ class LoginController
 
     public function loginUser($request)
     {
-        $loginUser = $this->userModel->findUserByUsernameAndPassword($request['username'], $request['password']);
+        $loginUser = $this->userModel->findUserByUsernameAndPassword($request['username'], md5($request['password']));
         if ($loginUser){
             $this->setSessionUsername($loginUser);
         }
